@@ -7,7 +7,6 @@ Description:
 　CH1, CH2のアドレスをそれぞれシフトさせて定義します。
 ****************************************************************/
 
-#include <Arduino.h>
 #include <Wire.h>
 #include "GroveI2CMiniMorter.h"
 
@@ -20,33 +19,29 @@ GroveI2CMiniMoto::GroveI2CMiniMoto(byte addr)
 // Forward function
 void GroveI2CMiniMoto::forwardDrive(int speed)
 {
-  byte data = 0x01;                // Hブリッジの論理制御より
   byte regValue = (byte)abs(speed); // マイナス値の場合は考慮しない
   if (regValue > 63) regValue = 63; // 上限設定
-  writeRegister(0x00, regValue, data); 
+  writeRegister(CTR_ADR, regValue, M_FORWARD); 
 }
 
 // Reversal function
 void GroveI2CMiniMoto::reversalDrive(int speed)
 {
-  byte data = 0x02;                // Hブリッジの論理制御より
   byte regValue = (byte)abs(speed); // マイナス値の場合は考慮しない
   if (regValue > 63) regValue = 63; // 上限設定
-  writeRegister(0x00, regValue, data);  
+  writeRegister(CTR_ADR, regValue, M_REVERSE);  
 }
 
 // Stop function
 void GroveI2CMiniMoto::stop()
 {
-  byte data = 0x00;                // Hブリッジの論理制御より
-  writeRegister(0x00, 0x00, data);
+  writeRegister(CTR_ADR, 0x00, M_STOP);
 }
 
 // Brake function
 void GroveI2CMiniMoto::brake()
 {
-  byte data = 0x03;                // Hブリッジの論理制御より
-  writeRegister(0x00, 0x00, data); 
+  writeRegister(CTR_ADR, 0x00, M_BRAKE); 
 }
 
 // Private function for Regsiter control

@@ -12,7 +12,16 @@ Description:
 #define GroveI2CMiniMorter_h
 
 #include <Arduino.h>
-#include <Wire.h>
+
+// Define register address
+#define CTR_ADR   0x00
+#define FLT_ADR   0x01
+
+// Define bridge control
+#define M_STOP    0x00
+#define M_FORWARD 0x01
+#define M_REVERSE 0x02
+#define M_BRAKE   0x03
 
 class GroveI2CMiniMoto
 {

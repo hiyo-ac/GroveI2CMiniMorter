@@ -1,7 +1,7 @@
 #include<Wire.h>
 #include<GroveI2CMiniMorter.h>
 
-GroveI2CMiniMoto morter1(0x62);
+GroveI2CMiniMoto morter1(0x62);// Arduinoの場合は1ビット右シフトする
 
 void setup() {
   Serial.println("Start morter");
